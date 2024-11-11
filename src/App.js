@@ -1,4 +1,52 @@
 import './App.css';
+//---------------------------useRef Hook ----------------------------------
+import React, { useEffect, useState , useRef} from 'react'
+
+const App = () => {
+  const [value, setValue] = useState(0)
+  const count = useRef(0)
+  // console.log(count) //{current : 0}
+
+  useEffect(()=>{
+    count.current = count.current +  1 ;
+  })
+
+  // When we state to count renders. useEffect re-renders infinite times and count increses
+  //  so we use useRef which only incresase count only when component renders
+  // const [count, setCount] = useState(0)
+  // useEffect(()=>{
+  //   setCount(prev => prev + 1)
+  // })
+
+
+  const inputElem = useRef();
+
+  const btnClicked = ()=>{
+    console.log(inputElem.current) // <input type='text' /> In this way we can access DOM elements
+    inputElem.current.style.background = 'yellow'
+    inputElem.current.value = 'Venu'
+    // console.log(inputElem)  // {current : input}
+  }
+
+  return (
+    <div>
+      <input type="text" ref={inputElem} />
+    <button onClick={btnClicked}>Click Here</button>
+      <hr />
+
+      <button onClick={()=>setValue((prev) => prev -1)}>-1</button>
+      <h1>{value}</h1>
+      <button onClick={()=>setValue((prev) => prev +1)}>+1</button>
+      {/* <h1>Component rendered : {count}</h1> */}
+      <h1>Component rendered : {count.current}</h1>
+    </div>
+  )
+}
+
+export default App;
+
+
+
 // ------------------------------useEffect Hook---------------------------------------
 // import React, { useEffect, useState } from 'react'
 
