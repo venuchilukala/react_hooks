@@ -1,29 +1,71 @@
 import './App.css';
-// -------------------------- useLayoutEffect Hook -----------------------
-import React, { useEffect, useLayoutEffect } from 'react'
+// ------------------------- custom Hooks -------------------------------
+import React, { useEffect, useState } from 'react'
+import useLocalStorage from './hooks/useLocalStorage';
 
 const App = () => {
-  useEffect(()=>{
-    console.log('Message from useEffect')
-  },[])
-  
-  useLayoutEffect(()=>{
-    console.log('Message from useLayoutEffect')
-  },[])
+  // const [name, setName] = useState(
+  //   localStorage.getItem('username') ? 
+  //   localStorage.getItem('username') : ''
+  // )
+
+  // useEffect(()=>{
+  //   localStorage.setItem('username', name)
+  // }, [name])
+
+  const [name, setName] = useLocalStorage('username', '')
+  const [id, setId] = useLocalStorage('id', '')
 
   return (
     <div>
-      <h1>Test Message</h1>
-      {
-        Array(400).fill('').map((item, index)=>(
-          <li key={index}>{Math.pow(Math.random(), 10)}</li>
-        ))
-      }
+      <input 
+        type="text" 
+        placeholder='Enter your name'
+        value={name}
+        onChange={(e)=>setName(e.target.value)}
+      />
+      <h1>Hello, {name}!</h1>
+      <br />
+      <input 
+        type="text" 
+        placeholder='Enter your Id'
+        value={id}
+        onChange={(e)=>setId(e.target.value)}
+      />
+      <h1>Your id: {id}</h1>
     </div>
   )
 }
 
 export default App
+
+
+
+// -------------------------- useLayoutEffect Hook -----------------------
+// import React, { useEffect, useLayoutEffect } from 'react'
+
+// const App = () => {
+//   useEffect(()=>{
+//     console.log('Message from useEffect')
+//   },[])
+  
+//   useLayoutEffect(()=>{
+//     console.log('Message from useLayoutEffect')
+//   },[])
+
+//   return (
+//     <div>
+//       <h1>Test Message</h1>
+//       {
+//         Array(400).fill('').map((item, index)=>(
+//           <li key={index}>{Math.pow(Math.random(), 10)}</li>
+//         ))
+//       }
+//     </div>
+//   )
+// }
+
+// export default App
 
 
 // --------------------------useReducer Hook -----------------------------
