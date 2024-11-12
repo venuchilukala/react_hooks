@@ -1,35 +1,60 @@
 import './App.css';
-// --------------------------useMemo Hook ------------------------------
-import React, {useMemo, useState} from 'react'
+// -----------------------useCallback Hook -----------------------
+import React, { useCallback, useState } from 'react'
+import Header from './components/Header';
 
 const App = () => {
-  const [number, setNmber] = useState(0)
-  const [counter, setCounter] = useState(0)
+  const [count, setCount] = useState(0)
 
-  function cubeOfNum(num){
-    console.log('calculation done!')
-    return Math.pow(num, 3)
-  }
-
-  // const result = cubeOfNum(number) //this function call everytime when component render 
-  // but we need to call only when number changes 
-  // So we use useMemo which will change only when there dependencies updates 
-  const result = useMemo(()=>{return cubeOfNum(number)},[number])
+  // const newFn = () =>{} Here every it render this function produces a different instance so it render every time 
+  
+  const newFn = useCallback(()=>{}, [])
 
   return (
     <div>
-      <>
-      <input type="number" value={number} onChange={(e)=>{setNmber((e.target.value))}} />
-      <h1>Cube of number : {result}</h1>
-
-      <button onClick={()=>setCounter(counter => counter+1)}>Counter +++</button>
-      <h1>Render : {counter}</h1>
-      </>
+      <Header newFn={newFn}/>
+      <h1>Count : {count}</h1>
+      <button onClick={()=>setCount(count=>count+1)}>Click to ++</button>      
     </div>
   )
 }
 
 export default App
+
+
+
+
+// --------------------------useMemo Hook ------------------------------
+// import React, {useMemo, useState} from 'react'
+
+// const App = () => {
+//   const [number, setNmber] = useState(0)
+//   const [counter, setCounter] = useState(0)
+
+//   function cubeOfNum(num){
+//     console.log('calculation done!')
+//     return Math.pow(num, 3)
+//   }
+
+//   // const result = cubeOfNum(number) //this function call everytime when component render 
+//   // but we need to call only when number changes 
+//   // So we use useMemo which will change only when there dependencies updates 
+//   const result = useMemo(()=>{return cubeOfNum(number)},[number])
+
+//   return (
+//     <div>
+//       <>
+//       <input type="number" value={number} onChange={(e)=>{setNmber((e.target.value))}} />
+//       <h1>Cube of number : {result}</h1>
+
+//       <button onClick={()=>setCounter(counter => counter+1)}>Counter +++</button>
+//       <h1>Render : {counter}</h1>
+//       </>
+//     </div>
+//   )
+// }
+
+// export default App
 
 
 //---------------------------useRef Hook ----------------------------------
