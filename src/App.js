@@ -1,25 +1,40 @@
 import './App.css';
-// -----------------------useCallback Hook -----------------------
-import React, { useCallback, useState } from 'react'
-import Header from './components/Header';
+// --------------------------useContext Hook ------------------------------ 
+import React from 'react'
+import Profile from './components/Profile';
 
 const App = () => {
-  const [count, setCount] = useState(0)
-
-  // const newFn = () =>{} Here every it render this function produces a different instance so it render every time 
-  
-  const newFn = useCallback(()=>{}, [])
-
   return (
     <div>
-      <Header newFn={newFn}/>
-      <h1>Count : {count}</h1>
-      <button onClick={()=>setCount(count=>count+1)}>Click to ++</button>      
+      <Profile/>
     </div>
   )
 }
 
 export default App
+
+
+// -----------------------useCallback Hook -----------------------
+// import React, { useCallback, useState } from 'react'
+// import Header from './components/Header';
+
+// const App = () => {
+//   const [count, setCount] = useState(0)
+
+//   // const newFn = () =>{} Here every it render this function produces a different instance so it render every time 
+  
+//   const newFn = useCallback(()=>{}, [])
+
+//   return (
+//     <div>
+//       <Header newFn={newFn}/>
+//       <h1>Count : {count}</h1>
+//       <button onClick={()=>setCount(count=>count+1)}>Click to ++</button>      
+//     </div>
+//   )
+// }
+
+// export default App
 
 
 
