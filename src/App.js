@@ -1,17 +1,63 @@
 import './App.css';
+// --------------------------useReducer Hook -----------------------------
+// import React, { useReducer, useState } from 'react'
+
+// const App = () => {
+//   // const [count, setCount] = useState(0)
+//   // It takes two arguments 
+//   // useReducer(reducer, state)
+
+//   const initialState = {count : 0}
+
+//   const reducer = (state, action) =>{
+//     switch(action.type){
+//       case 'increase' : {
+//         return {count : state.count + 1}
+//       }
+//       case 'decrease' : {
+//         return {count : state.count - 1}
+//       }
+//       case 'count' : {
+//         return {count : action.payload}
+//       }
+//       default : {
+//         return state
+//       }
+//     }
+//   }
+
+//   const [state, dispatch] = useReducer(reducer, initialState)
+
+//   return (
+//     <div>
+//       <h1>Count: {state.count}</h1>
+//       <button onClick={()=> dispatch({type : 'decrease'})}>Decrease</button>
+//       <button onClick={()=> dispatch({type : 'increase'})}>Incresase</button>
+//       <br />
+//       <input
+//         value={state.count}
+//         type="number" 
+//         onChange={(e)=>dispatch({type: 'count', payload: Number(e.target.value)})}/>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
 // --------------------------useContext Hook ------------------------------ 
-import React from 'react'
-import Profile from './components/Profile';
+// import React from 'react'
+// import Profile from './components/Profile';
 
-const App = () => {
-  return (
-    <div>
-      <Profile/>
-    </div>
-  )
-}
+// const App = () => {
+//   return (
+//     <div>
+//       <Profile/>
+//     </div>
+//   )
+// }
 
-export default App
+// export default App
 
 
 // -----------------------useCallback Hook -----------------------
