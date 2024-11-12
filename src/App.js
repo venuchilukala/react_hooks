@@ -1,4 +1,31 @@
 import './App.css';
+// -------------------------- useLayoutEffect Hook -----------------------
+import React, { useEffect, useLayoutEffect } from 'react'
+
+const App = () => {
+  useEffect(()=>{
+    console.log('Message from useEffect')
+  },[])
+  
+  useLayoutEffect(()=>{
+    console.log('Message from useLayoutEffect')
+  },[])
+
+  return (
+    <div>
+      <h1>Test Message</h1>
+      {
+        Array(400).fill('').map((item, index)=>(
+          <li key={index}>{Math.pow(Math.random(), 10)}</li>
+        ))
+      }
+    </div>
+  )
+}
+
+export default App
+
+
 // --------------------------useReducer Hook -----------------------------
 // import React, { useReducer, useState } from 'react'
 
@@ -17,7 +44,7 @@ import './App.css';
 //       case 'decrease' : {
 //         return {count : state.count - 1}
 //       }
-//       case 'count' : {
+//       case 'input' : {
 //         return {count : action.payload}
 //       }
 //       default : {
@@ -37,7 +64,7 @@ import './App.css';
 //       <input
 //         value={state.count}
 //         type="number" 
-//         onChange={(e)=>dispatch({type: 'count', payload: Number(e.target.value)})}/>
+//         onChange={(e)=>dispatch({type: 'input', payload: Number(e.target.value)})}/>
 //     </div>
 //   )
 // }
