@@ -1,49 +1,82 @@
 import './App.css';
-//---------------------------useRef Hook ----------------------------------
-import React, { useEffect, useState , useRef} from 'react'
+// --------------------------useMemo Hook ------------------------------
+import React, {useMemo, useState} from 'react'
 
 const App = () => {
-  const [value, setValue] = useState(0)
-  const count = useRef(0)
-  // console.log(count) //{current : 0}
+  const [number, setNmber] = useState(0)
+  const [counter, setCounter] = useState(0)
 
-  useEffect(()=>{
-    count.current = count.current +  1 ;
-  })
-
-  // When we state to count renders. useEffect re-renders infinite times and count increses
-  //  so we use useRef which only incresase count only when component renders
-  // const [count, setCount] = useState(0)
-  // useEffect(()=>{
-  //   setCount(prev => prev + 1)
-  // })
-
-
-  const inputElem = useRef();
-
-  const btnClicked = ()=>{
-    console.log(inputElem.current) // <input type='text' /> In this way we can access DOM elements
-    inputElem.current.style.background = 'yellow'
-    inputElem.current.value = 'Venu'
-    // console.log(inputElem)  // {current : input}
+  function cubeOfNum(num){
+    console.log('calculation done!')
+    return Math.pow(num, 3)
   }
+
+  // const result = cubeOfNum(number) //this function call everytime when component render 
+  // but we need to call only when number changes 
+  // So we use useMemo which will change only when there dependencies updates 
+  const result = useMemo(()=>{return cubeOfNum(number)},[number])
 
   return (
     <div>
-      <input type="text" ref={inputElem} />
-    <button onClick={btnClicked}>Click Here</button>
-      <hr />
+      <>
+      <input type="number" value={number} onChange={(e)=>{setNmber((e.target.value))}} />
+      <h1>Cube of number : {result}</h1>
 
-      <button onClick={()=>setValue((prev) => prev -1)}>-1</button>
-      <h1>{value}</h1>
-      <button onClick={()=>setValue((prev) => prev +1)}>+1</button>
-      {/* <h1>Component rendered : {count}</h1> */}
-      <h1>Component rendered : {count.current}</h1>
+      <button onClick={()=>setCounter(counter => counter+1)}>Counter +++</button>
+      <h1>Render : {counter}</h1>
+      </>
     </div>
   )
 }
 
-export default App;
+export default App
+
+
+//---------------------------useRef Hook ----------------------------------
+// import React, { useEffect, useState , useRef} from 'react'
+
+// const App = () => {
+//   const [value, setValue] = useState(0)
+//   const count = useRef(0)
+//   // console.log(count) //{current : 0}
+
+//   useEffect(()=>{
+//     count.current = count.current +  1 ;
+//   })
+
+//   // When we state to count renders. useEffect re-renders infinite times and count increses
+//   //  so we use useRef which only incresase count only when component renders
+//   // const [count, setCount] = useState(0)
+//   // useEffect(()=>{
+//   //   setCount(prev => prev + 1)
+//   // })
+
+
+//   const inputElem = useRef();
+
+//   const btnClicked = ()=>{
+//     console.log(inputElem.current) // <input type='text' /> In this way we can access DOM elements
+//     inputElem.current.style.background = 'yellow'
+//     inputElem.current.value = 'Venu'
+//     // console.log(inputElem)  // {current : input}
+//   }
+
+//   return (
+//     <div>
+//       <input type="text" ref={inputElem} />
+//     <button onClick={btnClicked}>Click Here</button>
+//       <hr />
+
+//       <button onClick={()=>setValue((prev) => prev -1)}>-1</button>
+//       <h1>{value}</h1>
+//       <button onClick={()=>setValue((prev) => prev +1)}>+1</button>
+//       {/* <h1>Component rendered : {count}</h1> */}
+//       <h1>Component rendered : {count.current}</h1>
+//     </div>
+//   )
+// }
+
+// export default App;
 
 
 
